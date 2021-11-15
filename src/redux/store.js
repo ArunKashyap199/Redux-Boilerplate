@@ -1,20 +1,27 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { userReducer } from './reducers/getUserList'
+import { userReducer } from '../reducers/getUser'
+import { albumReducer } from '../reducers/getAlbum'
+import { commentReducer } from '../reducers/getComments'
+import { photoReducer } from '../reducers/getPhoto'
+import { postReducer } from '../reducers/getPost'
+import { todoReducer } from '../reducers/getTodo'
 
-const reducer = combineReducers({
-    planList: userReducer,
+const rootReducer = combineReducers({
+    users: userReducer,
+    albums: albumReducer,
+    comments: commentReducer,
+    photos: photoReducer,
+    posts: postReducer,
+    todos: todoReducer,
 })
 
-const initialState = {
-   
-}
-
+const initialState = {}
 const middleware = [thunk]
 
 const store = createStore(
-    reducer,
+    rootReducer,
     initialState,
     composeWithDevTools({ mageAge: 200 })(applyMiddleware(...middleware))
 )
